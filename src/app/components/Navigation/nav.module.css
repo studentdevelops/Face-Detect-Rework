@@ -1,0 +1,39 @@
+.NavMain {
+    height: 10vh;
+    width: 100vw;
+}
+
+.NavBar {
+    padding: 0 2rem;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    height: 100%;
+    gap: 2rem;
+    font-size: 20px;
+}
+.NavItem {
+    cursor: pointer;
+}
+
+.push {
+    margin-left: auto;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdownContent{
+    display: none;
+    padding-top: 5px;
+    position: absolute;
+    z-index: 1;
+}
+.dropdownContent:hover{
+    display: block;
+}
+
+.dropdown:hover .dropdownContent{
+    display: block;
+}

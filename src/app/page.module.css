@@ -1,0 +1,93 @@
+.main {
+    height: 70vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+}
+
+.formMain {
+    display: grid;
+    place-items: center;
+    padding: 2rem 5rem;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.titleHeader {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+    /* margin: 3rem; */
+}
+.subTitle{
+    text-align: center;
+    margin: 0 0 3rem 0;
+    font-weight: 400;
+}
+.inputField {
+    outline: none;
+    font-weight: 600;
+    background-color: hsla(0, 0%, 50%, 0.507);
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: white;
+    width: 500px;
+    border: 1px solid black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    background-color: #f8ac7d;
+    font-weight: 600;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid black;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.ImageFetched {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.searchBoxWrapper {
+    display: flex;
+}
+
+.uploadInput {
+    display: none;
+}
+.uploadButton {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -5%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    /* background-color: red; */
+}
+.bounding-box {
+    position: absolute;
+    box-shadow: 0 0 0 3px #149df2 inset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

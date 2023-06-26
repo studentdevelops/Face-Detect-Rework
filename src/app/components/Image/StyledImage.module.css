@@ -1,0 +1,20 @@
+/* .ImageWrapper {
+    position: relative;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.ImageFetched {
+    position: relative;
+} */
+
+.ImageWrapper {
+    position: relative;
+}
+
+.ImageFetched {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    max-height: 400px !important;
+}

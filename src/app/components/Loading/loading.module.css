@@ -1,0 +1,17 @@
+.LoaderMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 0.5rem;
+    background-color: none;
+    height: 70vh;
+    width: 100%;
+}
+.LoadingDot{
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    background-color: black;
+    border-radius: 50%;
+}
