@@ -23,7 +23,7 @@ export default function SignUp() {
     const email = data.get("email");
     const password = data.get("password");
     const confirmPassword = data.get("confirmPassword")
-    if (validateEmail(email)) {
+    if (validateEmail(email) && validatePassword(password)) {
       if (password == confirmPassword) {
         const response = await toast.promise(
           fetch("/api/signup", {
