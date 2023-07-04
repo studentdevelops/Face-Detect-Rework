@@ -19,7 +19,7 @@ export const detectFaces = async (image) => {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Authorization': 'Key ' + 'd522ba3d59b0465db780088f841e889b'
+      'Authorization': 'Key ' + process.env.CLARIFAI_TOKEN
     },
     body: raw
   };
