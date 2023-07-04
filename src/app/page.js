@@ -28,7 +28,6 @@ export default function Home() {
   }
 
   const fetchImage = (e) => {
-    clear()
     const imgUrl = e.target.value;
     SetImage(imgUrl);
     setUploaded(false)

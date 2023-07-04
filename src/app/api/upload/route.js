@@ -8,10 +8,14 @@ export async function POST(req, res) {
     const base64Image = base64Array.pop()
     const format = base64Array[0].substring(11)
     const finalUrl = `uploads/${url.split("/").pop()}.${format}`;
-    fs.writeFile(`public/${finalUrl}`, base64Image, "base64", (err) => {
-        if (err) {
-            return NextResponse.json({ status: "failed" });
-        }
-    });
+    try {
+        fs.writeFile(`public/${finalUrl}`, base64Image, "base64", (err) => {
+            if (err) {
+                return NextResponse.json({ status: "failed" });
+            }
+        });
+    } catch (error) {
+        console.log(error)
+    }
     return NextResponse.json({ url: finalUrl });
 }
