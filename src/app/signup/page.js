@@ -26,7 +26,7 @@ export default function SignUp() {
     if (validateEmail(email)) {
       if (password == confirmPassword) {
         const response = await toast.promise(
-          fetch("http://localhost:3000/api/signup", {
+          fetch("/api/signup", {
             method: "POST",
             body: JSON.stringify({
               name,

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.16",
-    "@prisma/client": "^4.15.0",
+    "@prisma/client": "^4.16.2",
     "@types/busboy": "^1.5.0",
     "bcrypt": "^5.1.0",
     "clarifai-nodejs-grpc": "^8.0.0",
@@ -32,6 +32,6 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "prisma": "^4.15.0"
+    "prisma": "^4.16.2"
   }
 }

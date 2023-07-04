@@ -17,7 +17,7 @@ export default function Login() {
   const { user, setUser, count, setCount } = useUserContext()
 
   const onSuccessfulLogin = async () => {
-    const response = await fetch("http://localhost:3000/api/fetchdetails")
+    const response = await fetch("/api/fetchdetails")
     const result = await response.json()
     setUser(result.name);
     setCount(result.count);
@@ -32,7 +32,7 @@ export default function Login() {
     const password = data.get("password");
     if (validateEmail(email)) {
       const response = await toast.promise(
-        fetch("http://localhost:3000/api/login", {
+        fetch("/api/login", {
           method: "POST",
           body: JSON.stringify({ email, password })
         }),

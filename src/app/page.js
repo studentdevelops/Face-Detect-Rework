@@ -28,6 +28,7 @@ export default function Home() {
   }
 
   const fetchImage = (e) => {
+    clear()
     const imgUrl = e.target.value;
     SetImage(imgUrl);
     setUploaded(false)
@@ -40,7 +41,7 @@ export default function Home() {
     } else {
       path = image
     }
-    const response = await fetch("http://localhost:3000/api/predict", {
+    const response = await fetch("/api/predict", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -66,7 +67,7 @@ export default function Home() {
     });
     const url = URL.createObjectURL(image)
 
-    const response = await fetch("http://localhost:3000/api/upload", {
+    const response = await fetch("/api/upload", {
       method: "POST",
       body: JSON.stringify({
         image: ImageData,
@@ -78,7 +79,7 @@ export default function Home() {
     setUploaded(true)
   }
   const fetchDetails = async () => {
-    const response = await fetch("http://localhost:3000/api/fetchdetails");
+    const response = await fetch("/api/fetchdetails");
     const result = await response.json()
     setUser(result.name);
     setCount(result.count);

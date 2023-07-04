@@ -11,7 +11,7 @@ export default function NavBar() {
     const { user, setUser, setCount } = useUserContext();
     const router = useRouter()
     const logout = async () => {
-        const response = await fetch("http://localhost:3000/api/logout")
+        const response = await fetch("/api/logout")
         router.push("/login")
         setUser()
         setCount()
