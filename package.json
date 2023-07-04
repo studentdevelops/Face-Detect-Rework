@@ -17,6 +17,7 @@
     "clarifai-nodejs-grpc": "^8.0.0",
     "classnames": "^2.3.2",
     "client-only": "^0.0.1",
+    "cloudinary": "^1.37.3",
     "cookie": "^0.5.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",

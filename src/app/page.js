@@ -6,6 +6,7 @@ import { FaUpload, FaWindowClose } from "react-icons/fa"
 import { motion } from "framer-motion";
 import StyledImage from "@/app/components/Image/StyledImage"
 import Loading from './components/Loading/loading'
+import { toast } from 'react-toastify'
 
 // export const metadata = {
 //   title: 'Face Detector',
@@ -14,7 +15,6 @@ import Loading from './components/Loading/loading'
 
 export default function Home() {
   const [image, SetImage] = useState();
-  const [uploaded, setUploaded] = useState(false);
   const { user, setUser, count, setCount } = useUserContext()
   const [box, setBox] = useState()
   const [loading, setLoading] = useState(true);
@@ -24,7 +24,6 @@ export default function Home() {
     textBox.value = "";
     SetImage()
     setBox()
-    setUploaded(false)
   }
 
   const fetchImage = (e) => {
@@ -34,24 +33,25 @@ export default function Home() {
   }
 
   const detect = async (e) => {
-    let path;
-    if (uploaded) {
-      path = window.location.href + image.substring(1)
-    } else {
-      path = image
-    }
-    const response = await fetch("/api/predict", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        image: path,
-      })
-    })
+    const response = await toast.promise(
+      fetch("/api/predict", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          image: image,
+        })
+      }),
+      {
+        pending: 'Detecting Face',
+        error: 'Error! Try Again! 🤯'
+      }
+    );
     const result = await response.json()
     setBox(result.response)
     setCount(count + 1);
+    toast.success("Detected 👌", { position: toast.POSITION.TOP_RIGHT })
   }
 
   const onUploadClick = async (e) => {
@@ -64,18 +64,24 @@ export default function Home() {
       });
       reader.readAsDataURL(image);
     });
-    const url = URL.createObjectURL(image)
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: JSON.stringify({
-        image: ImageData,
-        url: url
-      })
-    })
+
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: JSON.stringify({
+          image: ImageData,
+        })
+      }),
+      {
+        pending: 'Uploading Face',
+        error: 'Error! Try Again! 🤯'
+      }
+    );
+
     const result = await response.json();
-    SetImage(`/${result.url}`)
-    setUploaded(true)
+    toast.success("Uploaded 👌", { position: toast.POSITION.TOP_RIGHT })
+    SetImage(result.url)
   }
   const fetchDetails = async () => {
     const response = await fetch("/api/fetchdetails");
@@ -87,7 +93,7 @@ export default function Home() {
   useEffect(() => {
     setLoading(true);
     fetchDetails()
-  },[])
+  }, [])
 
   if (loading) {
     return <Loading />
