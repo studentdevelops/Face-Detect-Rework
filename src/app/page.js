@@ -63,7 +63,7 @@ export default function Home() {
         resolve(reader.result);
       });
       reader.readAsDataURL(image);
-    });
+    }, false);
 
 
     const response = await toast.promise(
