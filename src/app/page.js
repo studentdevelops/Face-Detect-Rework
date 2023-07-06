@@ -54,35 +54,35 @@ export default function Home() {
     toast.success("Detected 👌", { position: toast.POSITION.TOP_RIGHT })
   }
 
-  // const onUploadClick = async (e) => {
-  //   const image = e.target.files[0];
-  //   const reader = new FileReader();
+  const onUploadClick = async (e) => {
+    const image = e.target.files[0];
+    const reader = new FileReader();
 
-  //   const ImageData = await new Promise((resolve, reject) => {
-  //     reader.addEventListener("load", () => {
-  //       resolve(reader.result);
-  //     });
-  //     reader.readAsDataURL(image);
-  //   }, false);
+    const ImageData = await new Promise((resolve, reject) => {
+      reader.addEventListener("load", () => {
+        resolve(reader.result);
+      });
+      reader.readAsDataURL(image);
+    }, false);
 
 
-  //   const response = await toast.promise(
-  //     fetch("/api/upload", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         image: ImageData,
-  //       })
-  //     }),
-  //     {
-  //       pending: 'Uploading Face',
-  //       error: 'Error! Try Again! 🤯'
-  //     }
-  //   );
+    const response = await toast.promise(
+      fetch("/api/upload", {
+        method: "POST",
+        body: JSON.stringify({
+          image: ImageData,
+        })
+      }),
+      {
+        pending: 'Uploading Face',
+        error: 'Error! Try Again! 🤯'
+      }
+    );
 
-  //   const result = await response.json();
-  //   toast.success("Uploaded 👌", { position: toast.POSITION.TOP_RIGHT })
-  //   SetImage(result.url)
-  // }
+    const result = await response.json();
+    toast.success("Uploaded 👌", { position: toast.POSITION.TOP_RIGHT })
+    SetImage(result.url)
+  }
   const fetchDetails = async () => {
     const response = await fetch("/api/fetchdetails");
     const result = await response.json()
@@ -108,7 +108,7 @@ export default function Home() {
         <div className={styles.formMain}>
           <div className={styles.searchBoxWrapper}>
             <input className={styles.inputField} type='text' id="url" onChange={fetchImage} />
-            <input onChange={() => console.log("error while uploading")} type='file' id={"imgUpload"} className={styles.uploadInput} />
+            <input onChange={onUploadClick} type='file' id={"imgUpload"} className={styles.uploadInput} />
             <motion.label
               whileHover={{
                 scale: 1.1,
