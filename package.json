@@ -7,7 +7,7 @@
     "build": "next build ",
     "start": "next start",
     "lint": "next lint",
-    "now-build": "next build | npx prisma generate"
+    "now-build": "prisma generate && prisma db push && next build"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.16",
