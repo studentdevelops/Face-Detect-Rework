@@ -95,6 +95,7 @@ export default function Home() {
     fetchDetails()
   }, [])
 
+
   if (loading) {
     return <Loading />
   }
