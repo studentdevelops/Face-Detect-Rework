@@ -6,7 +6,12 @@ export async function uploadData(img) {
     formData.append('upload_preset', `${process.env.CLOUDINARY_UPLOAD_PRESET}`)
     const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
         method: "POST",
-        body: formData
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Basic ${btoa(`${process.env.CLOUDINARY_API}:${process.env.CLOUDINARY_API_SECRET}`)}`
+        },
+        body: formData,
+        
     })
     // .then(data => data.json())
     const result = await response.json()

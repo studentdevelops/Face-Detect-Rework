@@ -19,6 +19,7 @@ export default function Login() {
   const onSuccessfulLogin = async () => {
     const response = await fetch("/api/fetchdetails")
     const result = await response.json()
+    router.push("/")
     setUser(result.name);
     setCount(result.count);
   }
@@ -45,7 +46,6 @@ export default function Login() {
       if (result?.userId) {
         toast.success("Welcome 👌", { position: toast.POSITION.TOP_RIGHT });
         onSuccessfulLogin();
-        router.push("/")
       } else {
         toast.warn("Invalid email or password", { position: toast.POSITION.TOP_RIGHT });
       }
