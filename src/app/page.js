@@ -1,5 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+
 import styles from './page.module.css'
 import { useUserContext } from './context/contextStore'
 import { FaUpload, FaWindowClose } from "react-icons/fa"
@@ -18,6 +20,8 @@ export default function Home() {
   const { user, setUser, count, setCount } = useUserContext()
   const [box, setBox] = useState()
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
 
   const clear = (e) => {
     const textBox = document.querySelector("#url");
@@ -86,6 +90,9 @@ export default function Home() {
   const fetchDetails = async () => {
     const response = await fetch("/api/fetchdetails");
     const result = await response.json()
+    if (result?.status) {
+      router.replace("/login")
+    }
     setUser(result.name);
     setCount(result.count);
     setLoading(false);

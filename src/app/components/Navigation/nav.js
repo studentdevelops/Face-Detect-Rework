@@ -27,7 +27,7 @@ export default function NavBar() {
                     }}
                     className={styles.NavItem}
                 >
-                    <Link href={"/"}> <FaRobot size={32} /></Link>
+                    <Link href="/"> <FaRobot size={32} /></Link>
                 </motion.li>
                 {!user ? <motion.li
                     whileHover={{
@@ -37,7 +37,7 @@ export default function NavBar() {
                     }}
                     className={classNames(styles.NavItem, styles.push)}
                 >
-                    <Link href={"/login"}>Login</Link>
+                    <Link href="/login">Login</Link>
                 </motion.li> : <li
 
                     className={classNames(styles.NavItem, styles.push)}

@@ -44,8 +44,8 @@ export default function SignUp() {
           const date = new Date();
           date.setDate(date.getDate() + 7)
           toast.success("Welcome 👌", { position: toast.POSITION.TOP_RIGHT })
-          setUser(name)
           router.push("/")
+          setUser(name)
         } else {
           toast.error("Try again or Try again with a different Email", { position: toast.POSITION.TOP_RIGHT })
         }

@@ -11,8 +11,8 @@ export async function uploadData(img) {
         body: formData,
     })
     // .then(data => data.json())
+    // console.log({"url":result.secure_url})
+    // console.log({"resut Complete":result})
     const result = await response.json()
-    console.log({"url":result.secure_url})
-    console.log({"resut Complete":result})
     return result.secure_url
 }
