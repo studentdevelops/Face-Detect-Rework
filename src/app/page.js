@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import styles from './page.module.css'
 import { useUserContext } from './context/contextStore'
-import { FaUpload, FaWindowClose } from "react-icons/fa"
+import { FaUpload } from "react-icons/fa"
 import { motion } from "framer-motion";
 import StyledImage from "@/app/components/Image/StyledImage"
 import Loading from './components/Loading/loading'
@@ -20,6 +20,7 @@ export default function Home() {
   const { user, setUser, count, setCount } = useUserContext()
   const [box, setBox] = useState()
   const [loading, setLoading] = useState(true);
+  const [celebName, setCelebName] = useState()
 
   const router = useRouter();
 
@@ -28,17 +29,18 @@ export default function Home() {
     textBox.value = "";
     SetImage()
     setBox()
+    setCelebName();
   }
 
   const fetchImage = (e) => {
     const imgUrl = e.target.value;
     SetImage(imgUrl);
-    setUploaded(false)
   }
 
-  const detect = async (e) => {
+  const detectFace = async (e) => {
+    setCelebName();
     const response = await toast.promise(
-      fetch("/api/predict", {
+      fetch("/api/detectface", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,6 +58,32 @@ export default function Home() {
     setBox(result.response)
     setCount(count + 1);
     toast.success("Detected 👌", { position: toast.POSITION.TOP_RIGHT })
+  }
+
+  const detectCeleb = async () => {
+    const response = await toast.promise(
+      fetch("/api/detectceleb", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          image: image,
+        })
+      }),
+      {
+        pending: 'Finding Celebrity',
+        error: 'Error! Try Again! 🤯'
+      }
+    );
+    const result = await response.json();
+    setBox(result.response);
+    if (result?.response) {
+      setCount(count + 1);
+      setCelebName(result?.response[0]?.data?.concepts[0]?.name)
+      toast.success("Celebs Found 👌", { position: toast.POSITION.TOP_RIGHT })
+    }
+
   }
 
   const onUploadClick = async (e) => {
@@ -112,7 +140,7 @@ export default function Home() {
     <main className={styles.main}>
       <div>
         <h2 className={styles.titleHeader}>Hey there {user}</h2>
-        <h4 className={styles.subTitle}> You have detected {count} faces till now</h4>
+        <h4 className={styles.subTitle}> You have used this app {count} times</h4>
         <div className={styles.formMain}>
           <div className={styles.searchBoxWrapper}>
             <input className={styles.inputField} type='text' id="url" onChange={fetchImage} />
@@ -129,12 +157,13 @@ export default function Home() {
               className={styles.uploadButton} htmlFor='imgUpload'><FaUpload /></motion.label>
           </div>
           <div className={styles.buttons}>
-            <button onClick={detect} className={styles.button}>Detect</button>
+            <button onClick={detectFace} className={styles.button}>Find a Face</button>
+            <button onClick={detectCeleb} className={styles.button}>Find Celebrity</button>
             <button onClick={clear} className={styles.button}>Clear</button>
           </div>
           <div className={styles.ImageContainer}>
             {image && (<StyledImage image={image} box={box} />)}
-
+            {celebName && (<p className={styles.celebName}>{celebName}</p>)}
           </div>
         </div>
       </div>
