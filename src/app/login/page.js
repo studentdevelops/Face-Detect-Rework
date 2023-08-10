@@ -21,7 +21,6 @@ export default function Login() {
     const result = await response.json()
     setUser(result.name);
     setCount(result.count);
-    router.push('/')
   }
 
   const LoginSubmit = async (e) => {
@@ -46,11 +45,18 @@ export default function Login() {
       if (result?.userId) {
         toast.success("Welcome 👌", { position: toast.POSITION.TOP_RIGHT });
         onSuccessfulLogin();
+        router.replace({ href: "/"})
       } else {
         toast.warn("Invalid email or password", { position: toast.POSITION.TOP_RIGHT });
       }
     }
   }
+
+
+  // useEffect(() => {
+    
+  // },[user])
+  
 
   return (
     <main className={styles.LoginMain}>
