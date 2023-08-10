@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import Link from "next/link"
 import { useRouter } from 'next/navigation'
@@ -13,7 +13,7 @@ import { useUserContext } from "../context/contextStore";
 
 
 export default function Login() {
-  const router = useRouter();
+  const router = useRouter()
   const { user, setUser, count, setCount } = useUserContext()
 
   const onSuccessfulLogin = async () => {
@@ -21,7 +21,7 @@ export default function Login() {
     const result = await response.json()
     setUser(result.name);
     setCount(result.count);
-    router.push('/');
+    router.push('/')
   }
 
   const LoginSubmit = async (e) => {
