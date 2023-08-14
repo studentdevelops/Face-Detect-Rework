@@ -9,11 +9,16 @@ import { motion } from "framer-motion";
 import StyledImage from "@/app/components/Image/StyledImage"
 import Loading from './components/Loading/loading'
 import { toast } from 'react-toastify'
+import { AuthGuard } from '@/utils/AuthGuard'
 
 // export const metadata = {
 //   title: 'Face Detector',
 //   description: 'Upload to Detect Faces on any picture',
 // }
+
+export function getServerSideProps(context) {
+  return AuthGuard(context.req);
+}
 
 export default function Home() {
   const [image, SetImage] = useState();
@@ -119,7 +124,7 @@ export default function Home() {
     const response = await fetch("/api/fetchdetails");
     const result = await response.json()
     if (result?.status) {
-      router.replace("/login")
+      router.push("/login")
     }
     setUser(result.name);
     setCount(result.count);

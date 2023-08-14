@@ -7,7 +7,8 @@
     "build": "next build ",
     "start": "next start",
     "lint": "next lint",
-    "now-build": "prisma generate && prisma db push && next build"
+    "now-build": "prisma generate && prisma db push && next build",
+    "test": "npm run build && npm run start"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",

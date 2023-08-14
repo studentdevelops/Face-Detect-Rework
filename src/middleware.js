@@ -1,17 +1,14 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
+import { AuthGuard } from './utils/AuthGuard'
 
-// This function can be marked `async` if using `await` inside
+// // This function can be marked `async` if using `await` inside
 export function middleware(request) {
-  const cookie = request.cookies.get('user')
-  if (!cookie?.value) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-  return NextResponse.next()
+  AuthGuard()
 }
 
-// See "Matching Paths" below to learn more
+// // See "Matching Paths" below to learn more
 export const config = {
   matcher: ['/'],
 }
