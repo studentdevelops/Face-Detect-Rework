@@ -5,7 +5,7 @@ import { AuthGuard } from './utils/AuthGuard'
 
 // // This function can be marked `async` if using `await` inside
 export function middleware(request) {
-  AuthGuard()
+  AuthGuard(request)
 }
 
 // // See "Matching Paths" below to learn more

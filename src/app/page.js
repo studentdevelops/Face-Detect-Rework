@@ -16,10 +16,6 @@ import { AuthGuard } from '@/utils/AuthGuard'
 //   description: 'Upload to Detect Faces on any picture',
 // }
 
-export function getServerSideProps(context) {
-  return AuthGuard(context.req);
-}
-
 export default function Home() {
   const [image, SetImage] = useState();
   const { user, setUser, count, setCount } = useUserContext()

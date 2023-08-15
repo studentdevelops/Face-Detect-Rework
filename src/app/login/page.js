@@ -87,23 +87,6 @@ export default function Login() {
                         Login
                     </motion.button>
                 </form>
-                <motion.button
-                    onTap={() => {
-                      console.log("router.push('/')")
-                        router.push("/");
-                    }}
-                    whileTap={{
-                        scale: 0.9,
-                        transition: { duration: 0.1, ease: "easeInOut" },
-                    }}
-                    whileHover={{
-                        scale: 1.1,
-                        transition: { duration: 0.2, ease: "easeInOut" },
-                    }}
-                    className={styles.LoginButton}
-                >
-                    Login
-                </motion.button>
             </div>
         </main>
     );
