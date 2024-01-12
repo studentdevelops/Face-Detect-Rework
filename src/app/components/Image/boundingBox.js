@@ -8,7 +8,7 @@ export default function drawBoxes(boundingBoxes) {
                 top: `${top_row * 100}%`,
                 width: `${(right_col - left_col) * 100}%`,
                 height: `${(bottom_row - top_row) * 100}%`,
-                border: '2px solid red',
+                border: '1px solid green',
                 boxSizing: 'border-box',
             };
             return <div key={index} style={boxStyle}></div>;
